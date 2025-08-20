@@ -12,8 +12,8 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
   const platforms: SharePlatform[] = [
    {
       name: 'YouTube',
-      icon: '▶️', // or real icon if using React icons
-      color: 'bg-red-600', // match style of other buttons
+      icon: 'Youtube', 
+      color: 'bg-red-600',
       url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
     }, 
     {
@@ -24,13 +24,13 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
     },
     {
       name: 'LinkedIn',
-      icon: '🌐',
+      icon: 'in',
       color: 'bg-blue-600',
       url: (text) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
     },
     {
       name: 'Facebook',
-      icon: '📘',
+      icon: 'f',
       color: 'bg-blue-500',
       url: (text) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cloutline.app')}&quote=${encodeURIComponent(text)}`
     },
@@ -42,7 +42,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
     },
     {
       name: 'Telegram',
-      icon: '📷',
+      icon: '✈️',
       color: 'bg-blue-400',
       url: (text) => `https://t.me/share/url?url=${encodeURIComponent('https://cloutline.app')}&text=${encodeURIComponent(text)}`
     },
