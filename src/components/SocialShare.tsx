@@ -11,6 +11,11 @@ interface SocialShareProps {
 const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
   const platforms: SharePlatform[] = [
     {
+      name: 'YouTube',
+       img: 'https://www.youtube.com/s/desktop/84dd6d17/img/favicon_144.png',
+       url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
+    },
+    {
       name: 'Twitter/X',
       icon: '𝕏',
       color: 'bg-black',
