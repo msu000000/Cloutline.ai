@@ -18,45 +18,33 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
     },
     {
       name: 'LinkedIn',
-      icon: <FaLinkedIn />,
+      icon: '🌐',
       color: 'bg-blue-600',
       url: (text) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
     },
     {
       name: 'Facebook',
-      icon: <FaFacebookF />,
+      icon: '📘',
       color: 'bg-blue-500',
       url: (text) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cloutline.app')}&quote=${encodeURIComponent(text)}`
     },
     {
       name: 'WhatsApp',
-      icon: <FaWhatsApp />,
+      icon: '📱',
       color: 'bg-green-500',
       url: (text) => `https://wa.me/?text=${encodeURIComponent(text)}`
     },
     {
       name: 'Telegram',
-      icon: <FaTelegramPlane />,
+      icon: '📷',
       color: 'bg-blue-400',
       url: (text) => `https://t.me/share/url?url=${encodeURIComponent('https://cloutline.app')}&text=${encodeURIComponent(text)}`
     },
     {
       name: 'Reddit',
-      icon: <FaRedditAlien />,
+      icon: '🔴',
       color: 'bg-orange-500',
       url: (text) => `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent('https://cloutline.app')}`
-    },
-    {
-      name: 'YouTube',
-      icon: <FaYoutube />,
-      color: 'bg-red-600',
-      url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
-   },
-   {
-      name: 'Instagram',
-      icon: <FaInstagram />,
-      color: 'bg-pink-500',
-      url: (text: string) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
   }
   ];
 
