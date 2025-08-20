@@ -47,16 +47,16 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
       url: (text) => `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent('https://cloutline.app')}`
     },
     {
-    name: 'YouTube',
-    icon: <FaYoutube />,
-    color: 'bg-red-600',
-    url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
+      name: 'YouTube',
+      icon: <FaYoutube />,
+      color: 'bg-red-600',
+      url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
    },
    {
-    name: 'Instagram',
-    icon: <FaInstagram />,
-    color: 'bg-pink-500',
-    url: (text: string) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
+      name: 'Instagram',
+      icon: <FaInstagram />,
+      color: 'bg-pink-500',
+      url: (text: string) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
   }
   ];
 
