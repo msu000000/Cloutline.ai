@@ -27,8 +27,8 @@ export class GroqService {
   private baseUrl: string;
 
   constructor() {
-    this.apiKey = import.meta.env.VITE_GROQ_API_KEY || '';
-    this.baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://api.groq.com/openai/v1';
+    this.apiKey = process.env.GROQ_API_KEY || '';
+    this.baseUrl = process.env.GROQ_API_BASE_URL || 'https://api.groq.com/openai/v1';
   }
 
   async generateHooks(topic: string, options: GenerationOptions): Promise<string[]> {
