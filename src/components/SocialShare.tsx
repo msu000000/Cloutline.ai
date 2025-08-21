@@ -16,49 +16,49 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
   const platforms: SharePlatform[] = [
    {
       name: 'YouTube',
-      icon: <FaYoutube />, 
+      icon: FaYoutube, 
       color: 'bg-[#FF0000]',
       url: (text) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
     },
     {  
       name: 'Instagram',
-      icon: <FaInstagram />,
+      icon: FaInstagram,
       color: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]',
       url: (text) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
     }, 
     {
       name: 'Twitter/X',
-      icon: <FaTwitter />,
+      icon: FaTwitter,
       color: 'bg-black',
       url: (text) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\nGenerated with @Cloutline')}`
     },
     {
       name: 'LinkedIn',
-      icon: <FaLinkedin />,
+      icon: FaLinkedin,
       color: 'bg-blue-600',
       url: (text) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
     },
     {
       name: 'Facebook',
-      icon: <FaFacebookF />,
+      icon: FaFacebookF,
       color: 'bg-blue-500',
       url: (text) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cloutline.app')}&quote=${encodeURIComponent(text)}`
     },
     {
       name: 'WhatsApp',
-      icon: <FaWhatsapp />,
+      icon: FaWhatsapp,
       color: 'bg-green-500',
       url: (text) => `https://wa.me/?text=${encodeURIComponent(text)}`
     },
     {
       name: 'Telegram',
-      icon: <FaTelegramPlane />,
+      icon: FaTelegramPlane,
       color: 'bg-blue-400',
       url: (text) => `https://t.me/share/url?url=${encodeURIComponent('https://cloutline.app')}&text=${encodeURIComponent(text)}`
     },
     {
       name: 'Reddit',
-      icon: <FaRedditAlien />,
+      icon: FaRedditAlien,
       color: 'bg-orange-500',
       url: (text) => `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent('https://cloutline.app')}`
   }
@@ -102,12 +102,14 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
 
         <div className="space-y-3 mb-6">
           {platforms.map((platform) => (
-            <button
+           const Icon = platform.icon;
+         return (
+          <button
               key={platform.name}
               onClick={() => handleShare(platform)}
               className={`w-full flex items-center space-x-3 p-3 ${platform.color} text-white rounded-lg hover:opacity-90 transition-opacity`}
             >
-              {React.cloneElement(platform.icon, { size: 24 })}
+              <Icon size={24} />
               <span className="font-medium">Share on {platform.name}</span>
             </button>
           ))}
