@@ -12,8 +12,8 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
   const platforms: SharePlatform[] = [
    {
       name: 'YouTube',
-      icon: 'Youtube', 
-      color: 'bg-red-600',
+      icon: <FaYoutube />, 
+      color: 'bg-[#FF0000]',
       url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
     }, 
     {
