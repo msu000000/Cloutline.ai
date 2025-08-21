@@ -1,6 +1,5 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { X } from 'lucide-react';
 import { 
   FaYoutube, FaTwitter, FaLinkedin, FaFacebookF, 
   FaWhatsapp, FaTelegramPlane, FaRedditAlien, FaInstagram 
@@ -29,13 +28,13 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
     }, 
     {
       name: 'Twitter/X',
-      icon: '𝕏',
+      icon: <FaTwitter/X />,
       color: 'bg-black',
       url: (text) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\nGenerated with @Cloutline')}`
     },
     {
       name: 'LinkedIn',
-      icon: <FaLinkedIn />,
+      icon: <FaLinkedin />,
       color: 'bg-blue-600',
       url: (text) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
     },
@@ -47,7 +46,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
     },
     {
       name: 'WhatsApp',
-      icon: <FaWhatsApp />,
+      icon: <FaWhatsapp />,
       color: 'bg-green-500',
       url: (text) => `https://wa.me/?text=${encodeURIComponent(text)}`
     },
