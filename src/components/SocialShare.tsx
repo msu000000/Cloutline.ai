@@ -102,8 +102,6 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
 
         <div className="space-y-3 mb-6">
           {platforms.map((platform) => (
-           const Icon = platform.icon;
-         return (
           <button
               key={platform.name}
               onClick={() => handleShare(platform)}
