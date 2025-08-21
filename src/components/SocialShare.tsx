@@ -1,8 +1,8 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { 
-  FaYoutube, FaTwitter, FaLinkedin, FaFacebookF, 
-  FaWhatsapp, FaTelegramPlane, FaRedditAlien, FaInstagram 
+  FaYoutube, FaInstagram, FaTwitter, FaLinkedin, FaFacebookF, 
+  FaWhatsapp, FaTelegramPlane, FaRedditAlien
 } from 'react-icons/fa';
 import { Hook, SharePlatform } from '../types';
 
@@ -18,49 +18,49 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
       name: 'YouTube',
       icon: <FaYoutube />, 
       color: 'bg-[#FF0000]',
-      url: (text: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
+      url: (text) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
     },
     {  
       name: 'Instagram',
       icon: <FaInstagram />,
       color: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]',
-      url: (text: string) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
+      url: (text) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
     }, 
     {
       name: 'Twitter/X',
       icon: <FaTwitter />,
       color: 'bg-black',
-      url: (text: string) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\nGenerated with @Cloutline')}`
+      url: (text) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\nGenerated with @Cloutline')}`
     },
     {
       name: 'LinkedIn',
       icon: <FaLinkedin />,
       color: 'bg-blue-600',
-      url: (text: string) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
+      url: (text) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
     },
     {
       name: 'Facebook',
       icon: <FaFacebookF />,
       color: 'bg-blue-500',
-      url: (text: string) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cloutline.app')}&quote=${encodeURIComponent(text)}`
+      url: (text) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cloutline.app')}&quote=${encodeURIComponent(text)}`
     },
     {
       name: 'WhatsApp',
       icon: <FaWhatsapp />,
       color: 'bg-green-500',
-      url: (text: string) => `https://wa.me/?text=${encodeURIComponent(text)}`
+      url: (text) => `https://wa.me/?text=${encodeURIComponent(text)}`
     },
     {
       name: 'Telegram',
       icon: <FaTelegramPlane />,
       color: 'bg-blue-400',
-      url: (text: string) => `https://t.me/share/url?url=${encodeURIComponent('https://cloutline.app')}&text=${encodeURIComponent(text)}`
+      url: (text) => `https://t.me/share/url?url=${encodeURIComponent('https://cloutline.app')}&text=${encodeURIComponent(text)}`
     },
     {
       name: 'Reddit',
       icon: <FaRedditAlien />,
       color: 'bg-orange-500',
-      url: (text: string) => `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent('https://cloutline.app')}`
+      url: (text) => `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent('https://cloutline.app')}`
   }
   ];
 
