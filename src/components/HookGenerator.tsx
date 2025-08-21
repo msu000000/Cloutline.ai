@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, RefreshCw } from 'lucide-react';
+import { generateHooksWithAI } from '../services/hookGenerator'; // Make sure path is correct
 
 interface HookGeneratorProps {
   topic: string;
@@ -19,6 +20,31 @@ const HookGenerator: React.FC<HookGeneratorProps> = ({
   hasHooks
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [hooks, setHooks] = useState<string[]>([]); // <-- AI hooks state
+
+  // Generate hooks using Groq AI
+  const handleGenerate = async () => {
+    if (!topic.trim()) return;
+
+    try {
+      onGenerate(); // notify parent loading started
+
+      const aiHooks = await generateHooksWithAI(topic, {
+        style: 'curiosity',
+        platform: 'YouTube',
+        audience: 'beginners',
+        tone: 'exciting',
+        includeEmojis: true,
+        includeHashtags: true,
+        maxLength: 100,
+        useGroqAPI: true
+      });
+
+      setHooks(aiHooks.map(h => h.text)); // Save only text
+    } catch (err) {
+      console.error('AI hook generation failed:', err);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
