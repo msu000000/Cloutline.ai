@@ -49,7 +49,7 @@ const HookGenerator: React.FC<HookGeneratorProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (topic.trim()) {
-      onGenerate();
+      handleGenerate();
     }
   };
 
