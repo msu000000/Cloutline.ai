@@ -286,7 +286,7 @@ function App() {
       {/* Footer */}
       <footer className="border-t border-gray-200 py-8 text-center text-gray-500">
         <div className="max-w-6xl mx-auto px-4">
-          <p className="mb-2">© 2025 Cloutline. Powered by AI for creators like you.</p>
+          <p className="mb-2">© 2025 Cloutline. AI-powered hooks generator to make your content go viral.</p>
           <p className="text-sm">Generate engaging hooks • Build your audience • Grow your brand</p>
         </div>
       </footer>
