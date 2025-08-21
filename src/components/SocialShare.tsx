@@ -1,9 +1,5 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { 
-  FaYoutube, FaInstagram, FaTwitter, FaLinkedin, FaFacebookF, 
-  FaWhatsapp, FaTelegramPlane, FaRedditAlien
-} from 'react-icons/fa';
 import { Hook, SharePlatform } from '../types';
 
 interface SocialShareProps {
@@ -16,49 +12,49 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
   const platforms: SharePlatform[] = [
    {
       name: 'YouTube',
-      icon: FaYoutube, 
+      icon: 'Youtube', 
       color: 'bg-[#FF0000]',
       url: (text) => `https://www.youtube.com/results?search_query=${encodeURIComponent(text)}`
     },
     {  
       name: 'Instagram',
-      icon: FaInstagram,
+      icon: '📷',
       color: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]',
       url: (text) => `https://www.instagram.com/create/story/?text=${encodeURIComponent(text)}`
     }, 
     {
       name: 'Twitter/X',
-      icon: FaTwitter,
+      icon: '𝕏',
       color: 'bg-black',
       url: (text) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\nGenerated with @Cloutline')}`
     },
     {
       name: 'LinkedIn',
-      icon: FaLinkedin,
+      icon: 'in',
       color: 'bg-blue-600',
       url: (text) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cloutline.app')}&summary=${encodeURIComponent(text)}`
     },
     {
       name: 'Facebook',
-      icon: FaFacebookF,
+      icon: 'f',
       color: 'bg-blue-500',
       url: (text) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cloutline.app')}&quote=${encodeURIComponent(text)}`
     },
     {
       name: 'WhatsApp',
-      icon: FaWhatsapp,
+      icon: '📱',
       color: 'bg-green-500',
       url: (text) => `https://wa.me/?text=${encodeURIComponent(text)}`
     },
     {
       name: 'Telegram',
-      icon: FaTelegramPlane,
+      icon: '✈️',
       color: 'bg-blue-400',
       url: (text) => `https://t.me/share/url?url=${encodeURIComponent('https://cloutline.app')}&text=${encodeURIComponent(text)}`
     },
     {
       name: 'Reddit',
-      icon: FaRedditAlien,
+      icon: '🔴',
       color: 'bg-orange-500',
       url: (text) => `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent('https://cloutline.app')}`
   }
@@ -107,7 +103,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ hook, isOpen, onClose }) => {
               onClick={() => handleShare(platform)}
               className={`w-full flex items-center space-x-3 p-3 ${platform.color} text-white rounded-lg hover:opacity-90 transition-opacity`}
             >
-              <Icon size={24} />
+              <span className="text-xl">{platform.icon}</span>
               <span className="font-medium">Share on {platform.name}</span>
             </button>
           ))}
