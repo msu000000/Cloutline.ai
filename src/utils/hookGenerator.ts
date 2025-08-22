@@ -167,24 +167,46 @@ function determineCategory(topic: string): string {
   
   return 'General';
 }
-
+// ---------------------- AI GENERATOR (GROQ) ------------
 export async function generateHooksWithAI(
   topic: string, 
   settings: any
 ): Promise<Hook[]> {
-  try {
-    // Try Groq API first if enabled and configured
-    if (settings.useGroqAPI) {
-      const aiHooks = await groqService.generateHooks(topic, {
-        style: settings.style,
-        platform: settings.platform,
-        audience: settings.audience,
-        tone: settings.tone,
-        includeEmojis: settings.includeEmojis,
-        includeHashtags: settings.includeHashtags,
-        maxLength: settings.maxLength
-      });
+  const apikey = 
+import.meta.env.VITE_GROQ_API_KEY;
+   
+  if (!settings.useGROQAPI || !apikey) 
+{ 
+    console.warn("⚠️ Groq API disabled or missing key. Falling back to local hooks.");
+    return generateHooks(topic);
+  }
 
+  try {
+    const response = await fetch("https://api.groq.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: [
+          { role: "system", content: "You are a viral content expert. Generate unique, catchy short-form video hooks." },
+          { role: "user", content: `Generate 5 different hooks for: "${topic}". Style: ${settings.style}. Audience: ${settings.audience}. Tone: ${settings.tone}. Keep each under ${settings.maxLength || 15} words.` }
+        ],
+        temperature: 0.9,
+        max_tokens: 300,
+      }),
+    });
+
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content || "";
+
+    const aiHooks = text
+      .split("\n")
+      .map((line: string) => line.replace(/^\d+[\).\s-]*/, "").trim())
+      .filter((line: string) => line.length > 0);
+    
       return aiHooks.map((text, index) => ({
         id: `ai-hook-${Date.now()}-${index}`,
         text,
@@ -199,9 +221,6 @@ export async function generateHooksWithAI(
       }));
     }
   } catch (error) {
-    console.warn('AI generation failed, falling back to local generation:', error);
+    console.error('AI generation failed:', error);
+   throw error; // don't fallback silently 
   }
-
-  // Fallback to local generation
-  return generateHooks(topic);
-}
