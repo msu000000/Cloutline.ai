@@ -171,9 +171,10 @@ export async function generateHooksWithAI(
   topic: string, 
   settings: any
 ): Promise<Hook[]> {
-    if (settings.useGroqAPI) 
-      
 try {
+   // Try Groq Api first if enable and configured 
+    if (settings.useGroqAPI) 
+   {
     const aiHooks = await groqService.generateHooks(topic, {
     style: settings.style,
     platform: settings.platform,
@@ -199,6 +200,7 @@ try {
       
   } catch (error) {
     console.warn('AI generation failed,falling back to local generation:', error);
+    // Fallback to local generation 
     return generateHooks(topic);
     }
   }
