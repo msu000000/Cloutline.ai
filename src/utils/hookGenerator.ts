@@ -167,13 +167,10 @@ function determineCategory(topic: string): string {
   
   return 'General';
 }
-// ---------------------- AI GENERATOR (GROQ) ------------
 export async function generateHooksWithAI(
   topic: string, 
   settings: any
 ): Promise<Hook[]> {
-  const apikey = 
-import.meta.env.VITE_GROQ_API_KEY;
     if (settings.useGroqAPI) 
       
 try {
