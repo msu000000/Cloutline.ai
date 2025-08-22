@@ -197,10 +197,10 @@ import.meta.env.VITE_GROQ_API_KEY;
         audience: settings.audience,
         isAIGenerated: true
       }));
-    }
-  } catch (error) {
-    console.warn('AI generation failed,falling back to local generation:', error);
-  }
+      
+   } catch (error) {
+     console.warn('AI generation failed,falling back to local generation:', error);
  //Fallback to local generation
  return generateHooks(topic);
-  }
+   }
+ }
