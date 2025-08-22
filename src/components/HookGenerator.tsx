@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Sparkles, RefreshCw } from 'lucide-react';
-import { generateHooksWithAI } from '../services/hookGenerator'; // Make sure path is correct
 
 interface HookGeneratorProps {
   topic: string;
