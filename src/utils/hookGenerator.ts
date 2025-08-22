@@ -174,7 +174,9 @@ export async function generateHooksWithAI(
 ): Promise<Hook[]> {
   const apikey = 
 import.meta.env.VITE_GROQ_API_KEY;
-    if (settings.useGroqAPI) {
+    if (settings.useGroqAPI) 
+      
+try {
  const aiHooks = await groqService.generateHooks(topic, {
  style: settings.style,
  platform: settings.platform,
@@ -185,22 +187,21 @@ import.meta.env.VITE_GROQ_API_KEY;
  maxLength: settings.maxLength
  });
      
-       return aiHooks.map((text, index) => ({
-        id: `ai-hook-${Date.now()}-${index}`,
-        text,
-        topic,
-        category: determineCategory(topic),
-        createdAt: new Date(),
-        engagement: Math.floor(Math.random() * 20) + 80, // AI hooks get higher engagement
-        platform: settings.platform,
-        style: settings.style,
-        audience: settings.audience,
-        isAIGenerated: true
-      }));
+    return aiHooks.map((text, index) => ({
+    id: `ai-hook-${Date.now()}-${index}`,
+    text,
+    topic,
+    category: determineCategory(topic),
+    createdAt: new Date(),
+    engagement: Math.floor(Math.random() * 20) + 80, // AI hooks get higher engagement
+    platform: settings.platform,
+    style: settings.style,
+    audience: settings.audience,
+    isAIGenerated: true
+    }));
       
-   } catch (error) {
-     console.warn('AI generation failed,falling back to local generation:', error);
- //Fallback to local generation
- return generateHooks(topic);
+  } catch (error) {
+    console.warn('AI generation failed,falling back to local generation:', error);
+    return generateHooks(topic);
    }
  }
