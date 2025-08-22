@@ -173,10 +173,11 @@ export async function generateHooksWithAI(
   settings: any
 ): Promise<Hook[]> {
   const apikey = 
-import.meta.env.VITE_GROQ_API_KEY;
+import.meta.env.VITE_GROQ_API_KEY; //
+ ✅ consistent variable name
    
   if (!settings.useGROQAPI || !apikey) 
-{ 
+{              // ✅ consistent casing
     console.warn("⚠️ Groq API disabled or missing key. Falling back to local hooks.");
     return generateHooks(topic);
   }
@@ -222,5 +223,6 @@ import.meta.env.VITE_GROQ_API_KEY;
     }
   } catch (error) {
     console.error('AI generation failed:', error);
-   throw error; // don't fallback silently 
+   throw error; // ✅ don't fallback silently unless you want to
   }
+}
