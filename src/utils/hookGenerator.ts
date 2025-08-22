@@ -199,7 +199,7 @@ import.meta.env.VITE_GROQ_API_KEY;
       }));
     }
   } catch (error) {
-    console.error('AI generation failed:', error);
-   throw error; // ✅ don't fallback silently unless you want to
+    console.error('AI generation failed,falling back to local generation:', error);
+   throw error; //Fallback to local generation
+return generateHooks(topic);
   }
-}
