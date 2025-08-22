@@ -174,15 +174,15 @@ export async function generateHooksWithAI(
     if (settings.useGroqAPI) 
       
 try {
- const aiHooks = await groqService.generateHooks(topic, {
- style: settings.style,
- platform: settings.platform,
- audience: settings.audience,
- tone: settings.tone,
- includeEmojis: settings.includeEmojis,
- includeHashtags: settings.includeHashtags,
- maxLength: settings.maxLength
- });
+    const aiHooks = await groqService.generateHooks(topic, {
+    style: settings.style,
+    platform: settings.platform,
+    audience: settings.audience,
+    tone: settings.tone,
+    includeEmojis: settings.includeEmojis,
+    includeHashtags: settings.includeHashtags,
+    maxLength: settings.maxLength
+    });
      
     return aiHooks.map((text, index) => ({
     id: `ai-hook-${Date.now()}-${index}`,
@@ -200,5 +200,5 @@ try {
   } catch (error) {
     console.warn('AI generation failed,falling back to local generation:', error);
     return generateHooks(topic);
-   }
- }
+    }
+  }
