@@ -1,7 +1,7 @@
 // Check if we're in development and log API key status
-const isDev = import.meta.env.DEV;
+const isDev = process.env.DEV;
 if (isDev) {
-  console.log('Groq API Key present:', !!import.meta.env.VITE_GROQ_API_KEY);
+  console.log('Groq API Key present:', !!import.process.env.GROQ_API_KEY);
 }
 
 interface GroqResponse {
