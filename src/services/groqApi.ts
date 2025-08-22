@@ -1,5 +1,5 @@
 // Check if we're in development and log API key status
-const isDev = meta.env.DEV;
+const isDev = import.meta.env.DEV;
 if (isDev) {
   console.log('Groq API Key present:', !!import.meta.env.VITE.GROQ_API_KEY);
 }
@@ -27,8 +27,8 @@ export class GroqService {
   private baseUrl: string;
 
   constructor() {
-    this.apiKey = meta.env.VITE.GROQ_API_KEY || '';
-    this.baseUrl = meta.env.VITE.GROQ_API_BASE_URL || 'https://api.groq.com/openai/v1';
+    this.apiKey = import.meta.env.VITE.GROQ_API_KEY || '';
+    this.baseUrl = import.meta.env.VITE.GROQ_API_BASE_URL || 'https://api.groq.com/openai/v1';
   }
 
   async generateHooks(topic: string, options: GenerationOptions): Promise<string[]> {
