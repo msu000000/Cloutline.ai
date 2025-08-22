@@ -33,7 +33,7 @@ const hookTemplates = [
   // List-based hooks
   "5 {topic} mistakes that are costing you money",
   "The top 3 {topic} trends everyone's talking about",
-  "7 {topic} strategies that actually work in 2024",
+  "7 {topic} strategies that actually work in 2025",
   "10 {topic} tools that will save you hours",
   "3 {topic} secrets I wish I knew sooner",
   
@@ -122,7 +122,7 @@ function makeQuestionHook(hook: string, topic: string): string {
     `Ever wondered why ${topic} experts never share this?`,
     `What if ${topic} could solve your biggest problem?`,
     `Why does everyone get ${topic} wrong?`,
-    `How is ${topic} changing everything in 2024?`,
+    `How is ${topic} changing everything in 2025?`,
     `What's the real secret behind ${topic} success?`
   ];
   return questions[Math.floor(Math.random() * questions.length)];
@@ -133,7 +133,7 @@ function makeNumberHook(hook: string, topic: string): string {
   const number = numbers[Math.floor(Math.random() * numbers.length)];
   const numberHooks = [
     `${number} ${topic} hacks that actually work`,
-    `${number} reasons why ${topic} is essential in 2024`,
+    `${number} reasons why ${topic} is essential in 2025`,
     `${number} ${topic} mistakes costing you success`,
     `The top ${number} ${topic} strategies revealed`,
     `${number} ${topic} secrets everyone should know`
