@@ -113,7 +113,7 @@ export function generateHooks(topic: string): Hook[] {
 }
 
 function getRandomTemplates(templates: string[], count: number): string[] {
-  const shuffled = [...templates].sort(() => 0.5 - Math.random());
+  const shuffled = [...templates].sort(() => Math.random() - 0.5 + topic.length * 0.001);
   return shuffled.slice(0, count);
 }
 
