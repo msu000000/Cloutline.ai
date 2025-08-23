@@ -70,69 +70,6 @@ const AdvancedSettings: React.FC<AdvancedSettingsProps> = ({
 
         <div className="p-6 overflow-y-auto max-h-96">
           <div className="space-y-8">
-            {/* AI Configuration */}
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Zap className="w-5 h-5 text-blue-600" />
-                <h4 className="text-lg font-semibold">AI Configuration</h4>
-              </div>
-              
-              <div className="space-y-4 pl-7">
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div>
-                    <p className="font-medium">Use Groq AI API</p>
-                    <p className="text-sm text-gray-600">Enable real AI-powered hook generation</p>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-3 h-3 rounded-full ${
-                      apiStatus === 'connected' ? 'bg-green-500' :
-                      apiStatus === 'disconnected' ? 'bg-red-500' : 'bg-yellow-500'
-                    }`}></div>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={settings.useGroqAPI}
-                        onChange={(e) => handleSettingChange('useGroqAPI', e.target.checked)}
-                        className="sr-only peer"
-                      />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
-                    </label>
-                  </div>
-                </div>
-
-                {settings.useGroqAPI && (
-                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Key className="w-4 h-4 text-blue-600" />
-                      <span className="font-medium text-blue-800">API Status</span>
-                    </div>
-                    <div className="text-sm text-blue-700">
-                      {apiStatus === 'connected' && (
-                        <div>
-                          <p>✅ Connected to Groq API</p>
-                          {usage && (
-                            <p className="mt-1">Usage: {usage.requests} requests, {usage.tokens.toLocaleString()} tokens</p>
-                          )}
-                        </div>
-                      )}
-                      {apiStatus === 'disconnected' && (
-                        <div>
-                          <p>❌ API key not configured or invalid</p>
-                          <p className="mt-1">Add VITE_GROQ_API_KEY to your .env file</p>
-                        </div>
-                      )}
-                      {apiStatus === 'checking' && <p>🔄 Checking connection...</p>}
-                    </div>
-                    <button
-                      onClick={checkApiStatus}
-                      className="mt-2 text-xs bg-blue-100 hover:bg-blue-200 px-2 py-1 rounded transition-colors"
-                    >
-                      Test Connection
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
 
             {/* Generation Style */}
             <div>
