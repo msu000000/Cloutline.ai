@@ -51,7 +51,6 @@ function App() {
     platform: 'general' as const,
     audience: 'general' as const,
     tone: 'friendly' as const,
-    useGroqAPI: false,
     includeEmojis: true,
     includeHashtags: false,
     maxLength: 280
@@ -74,7 +73,7 @@ function App() {
     setIsLoading(true);
     
     // Simulate AI processing time for realistic experience
-    await new Promise(resolve => setTimeout(resolve, generationSettings.useGroqAPI ? 3000 : 2000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
     
     const generatedHooks = await generateHooksWithAI(topic, generationSettings);
     setHooks(generatedHooks);
@@ -100,7 +99,7 @@ function App() {
     if (!topic.trim()) return;
     
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, generationSettings.useGroqAPI ? 2500 : 1500));
+    await new Promise(resolve => setTimeout(resolve, 2500));
     
     const newHooks = await generateHooksWithAI(topic, generationSettings);
     setHooks(newHooks);
@@ -286,7 +285,7 @@ function App() {
       {/* Footer */}
       <footer className="border-t border-gray-200 py-8 text-center text-gray-500">
         <div className="max-w-6xl mx-auto px-4">
-          <p className="mb-2">© 2025 Cloutline. AI-powered hooks generator to make your content go viral.</p>
+          <p className="mb-2">© 2024 Cloutline. Powered by AI for creators like you.</p>
           <p className="text-sm">Generate engaging hooks • Build your audience • Grow your brand</p>
         </div>
       </footer>
