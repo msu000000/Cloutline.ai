@@ -33,7 +33,7 @@ const hookTemplates = [
   // List-based hooks
   "5 {topic} mistakes that are costing you money",
   "The top 3 {topic} trends everyone's talking about",
-  "7 {topic} strategies that actually work in 2025",
+  "7 {topic} strategies that actually work in 2024",
   "10 {topic} tools that will save you hours",
   "3 {topic} secrets I wish I knew sooner",
   
@@ -122,7 +122,7 @@ function makeQuestionHook(hook: string, topic: string): string {
     `Ever wondered why ${topic} experts never share this?`,
     `What if ${topic} could solve your biggest problem?`,
     `Why does everyone get ${topic} wrong?`,
-    `How is ${topic} changing everything in 2025?`,
+    `How is ${topic} changing everything in 2024?`,
     `What's the real secret behind ${topic} success?`
   ];
   return questions[Math.floor(Math.random() * questions.length)];
@@ -133,7 +133,7 @@ function makeNumberHook(hook: string, topic: string): string {
   const number = numbers[Math.floor(Math.random() * numbers.length)];
   const numberHooks = [
     `${number} ${topic} hacks that actually work`,
-    `${number} reasons why ${topic} is essential in 2025`,
+    `${number} reasons why ${topic} is essential in 2024`,
     `${number} ${topic} mistakes costing you success`,
     `The top ${number} ${topic} strategies revealed`,
     `${number} ${topic} secrets everyone should know`
@@ -172,36 +172,27 @@ export async function generateHooksWithAI(
   topic: string, 
   settings: any
 ): Promise<Hook[]> {
-  try {
-    // Try Groq API first if enabled and configured
-    if (settings.useGroqAPI) {
-      const aiHooks = await groqService.generateHooks(topic, {
-        style: settings.style,
-        platform: settings.platform,
-        audience: settings.audience,
-        tone: settings.tone,
-        includeEmojis: settings.includeEmojis,
-        includeHashtags: settings.includeHashtags,
-        maxLength: settings.maxLength
-      });
+  // Always use Groq API for hook generation - no fallback
+  const aiHooks = await groqService.generateHooks(topic, {
+    style: settings.style,
+    platform: settings.platform,
+    audience: settings.audience,
+    tone: settings.tone,
+    includeEmojis: settings.includeEmojis,
+    includeHashtags: settings.includeHashtags,
+    maxLength: settings.maxLength
+  });
 
-      return aiHooks.map((text, index) => ({
-        id: `ai-hook-${Date.now()}-${index}`,
-        text,
-        topic,
-        category: determineCategory(topic),
-        createdAt: new Date(),
-        engagement: Math.floor(Math.random() * 20) + 80, // AI hooks get higher engagement
-        platform: settings.platform,
-        style: settings.style,
-        audience: settings.audience,
-        isAIGenerated: true
-      }));
-    }
-  } catch (error) {
-    console.warn('AI generation failed, falling back to local generation:', error);
-  }
-
-  // Fallback to local generation
-  return generateHooks(topic);
+  return aiHooks.map((text, index) => ({
+    id: `ai-hook-${Date.now()}-${index}`,
+    text,
+    topic,
+    category: determineCategory(topic),
+    createdAt: new Date(),
+    engagement: Math.floor(Math.random() * 20) + 80, // AI hooks get higher engagement
+    platform: settings.platform,
+    style: settings.style,
+    audience: settings.audience,
+    isAIGenerated: true
+  }));
 }
