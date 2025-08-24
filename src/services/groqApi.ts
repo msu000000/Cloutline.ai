@@ -1,5 +1,5 @@
 // Check if we're in development and log API key status
-const isDev = process.env.DEV;
+const isDev = process.env.NODE_ENV === "development";
 if (isDev) {
   console.log('Groq API Key present:', !!process.env.GROQ_API_KEY);
 }
