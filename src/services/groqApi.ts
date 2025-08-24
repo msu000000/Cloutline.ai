@@ -43,9 +43,10 @@ export class GroqService {
     const prompt = this.buildPrompt(topic, options);
 
     try {
-      const response = await fetch(`/api/groq`, {
+      const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ${process.env.GROQ_API_KEY}',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -146,8 +147,9 @@ Generate 5 ${style} hooks about "${topic}":`;
     if (!this.apiKey) return false;
 
     try {
-      const response = await fetch(`/api/groq`, {
+      const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
         headers: {
+          'Authorization': 'Bearer ${process.env.GROQ_API_KEY}',
           'Content-Type': 'application/json',
         },
         method: 'POST',
