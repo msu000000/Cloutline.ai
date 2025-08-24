@@ -146,9 +146,8 @@ Generate 5 ${style} hooks about "${topic}":`;
     if (!this.apiKey) return false;
 
     try {
-      const response = await fetch(`${this.baseUrl}/chat/completions`, {
+      const response = await fetch(`/api/groq`, {
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
           'Content-Type': 'application/json',
         },
         method: 'POST',
