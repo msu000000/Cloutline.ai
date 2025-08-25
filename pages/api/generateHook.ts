@@ -1,49 +1,47 @@
-// pages/api/generateHook.ts
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import fetch from 'node-fetch';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Only POST requests allowed' });
   }
 
   try {
-    const { topic } = req.body;
+    const { prompt } = req.body;
 
-    if (!topic || typeof topic !== "string") {
-      return res.status(400).json({ error: "Invalid topic" });
+    if (!prompt) {
+      return res.status(400).json({ error: 'Prompt is required' });
     }
 
     // Call Groq API
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "llama3-8b-8192", // You can switch to a different Groq model if needed
+        model: "llama-3.1-8b-instant", // or whichever Groq model you want
         messages: [
-          { role: "system", content: "You are an expert at writing viral short-form hooks." },
-          { role: "user", content: `Generate 5 viral short video hooks about: ${topic}` },
+          { role: "system", content: "You are an AI Hook Generator." },
+          { role: "user", content: prompt }
         ],
-        max_tokens: 200,
+        max_tokens: 100,
       }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const errorText = await response.text();
-      return res.status(500).json({ error: `Groq API failed: ${errorText}` });
+      throw new Error(data.error?.message || "Groq API error");
     }
 
-    const data = await response.json();
-    const hooks = data.choices?.[0]?.message?.content || "No hooks generated";
+    const hook = data.choices?.[0]?.message?.content?.trim();
 
-    return res.status(200).json({ hooks });
+    return res.status(200).json({ hook });
+
   } catch (error: any) {
-    console.error("Error generating hooks:", error);
-    return res.status(500).json({ error: error.message || "Something went wrong" });
+    console.error("Error generating hook:", error);
+    return res.status(500).json({ error: error.message });
   }
 }
