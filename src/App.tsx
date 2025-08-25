@@ -74,7 +74,6 @@ function App() {
     
     const generatedHooks = await generateHooksWithAI(topic, generationSettings);
     setHooks(generatedHooks);
-    setIsLoading(false);
 
     // Update stats
     LocalStorageManager.updateStats('generate');
@@ -99,7 +98,6 @@ function App() {
     
     const newHooks = await generateHooksWithAI(topic, generationSettings);
     setHooks(newHooks);
-    setIsLoading(false);
 
     LocalStorageManager.updateStats('generate');
     setStats(LocalStorageManager.getStats());
