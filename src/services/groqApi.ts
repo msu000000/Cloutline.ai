@@ -35,7 +35,7 @@ export class GroqService {
     this.model = 'llama3-8b-8192';
     
     if (isDev && !this.apiKey) {
-      console.warn('⚠️ Groq API key not found. Please add VITE_GROQ_API_KEY to your .env file');
+      console.warn('⚠️ Groq API key not found. Please add GROQ_API_KEY to your .env file');
     }
   }
 
