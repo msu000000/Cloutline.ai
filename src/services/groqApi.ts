@@ -1,5 +1,5 @@
 // Professional Groq API Service with comprehensive error handling
-const isDev = import.meta.env.DEV;
+const isDev = process.env.DEV;
 
 interface GroqResponse {
   choices: Array<{
@@ -30,8 +30,8 @@ export class GroqService {
   private model: string;
 
   constructor() {
-    this.apiKey = import.meta.env.VITE_GROQ_API_KEY || '';
-    this.baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://api.groq.com/openai/v1';
+    this.apiKey = process.env.GROQ_API_KEY || '';
+    this.baseUrl = process.env.API_BASE_URL || 'https://api.groq.com/openai/v1';
     this.model = 'llama3-8b-8192';
     
     if (isDev && !this.apiKey) {
