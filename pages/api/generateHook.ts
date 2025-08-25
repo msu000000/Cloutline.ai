@@ -1,16 +1,19 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import fetch from 'node-fetch';
-
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Only POST requests allowed' });
+export default async function handler(req: Request): Promise<Response> {
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Only POST requests allowed" }), {
+      status: 405,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   try {
-    const { prompt } = req.body;
+    const { prompt } = await req.json();
 
     if (!prompt) {
-      return res.status(400).json({ error: 'Prompt is required' });
+      return new Response(JSON.stringify({ error: "Prompt is required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     // Call Groq API
@@ -21,10 +24,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.1-8b-instant", // or whichever Groq model you want
+        model: "llama-3.1-8b-instant",
         messages: [
           { role: "system", content: "You are an AI Hook Generator." },
-          { role: "user", content: prompt }
+          { role: "user", content: prompt },
         ],
         max_tokens: 100,
       }),
@@ -33,15 +36,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error?.message || "Groq API error");
+      return new Response(JSON.stringify({ error: data.error?.message || "Groq API error" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     const hook = data.choices?.[0]?.message?.content?.trim();
 
-    return res.status(200).json({ hook });
+    return new Response(JSON.stringify({ hook }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
 
   } catch (error: any) {
     console.error("Error generating hook:", error);
-    return res.status(500).json({ error: error.message });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
