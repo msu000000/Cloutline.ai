@@ -46,7 +46,7 @@ const HookGenerator: React.FC<HookGeneratorProps> = ({
             onChange={(e) => onTopicChange(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder="Enter your topic (e.g., entrepreneurship, fitness, cooking...)"
+            placeholder="Enter your topic (e.g., fitness, entrepreneurship, cooking...)"
             className={`w-full px-6 py-4 text-lg border-2 rounded-xl bg-white transition-all duration-300 placeholder-gray-400 focus:outline-none ${
               isFocused || topic 
                 ? 'border-black' 
