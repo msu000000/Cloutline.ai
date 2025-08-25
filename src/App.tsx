@@ -72,9 +72,6 @@ function App() {
     
     setIsLoading(true);
     
-    // Simulate AI processing time for realistic experience
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
     const generatedHooks = await generateHooksWithAI(topic, generationSettings);
     setHooks(generatedHooks);
     setIsLoading(false);
@@ -99,7 +96,6 @@ function App() {
     if (!topic.trim()) return;
     
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 2500));
     
     const newHooks = await generateHooksWithAI(topic, generationSettings);
     setHooks(newHooks);
