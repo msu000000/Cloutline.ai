@@ -55,7 +55,7 @@ export class GroqService {
     const prompt = this.buildAdvancedPrompt(topic, options);
 
     try {
-      const response = await fetch(`${"/api/generateHook", {
+      const response = await fetch(`${"https://api.groq.com/openai/v1/chat/completions", {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.apiKey}`,
@@ -206,7 +206,7 @@ Create 5 ${options.style} hooks about "${topic}" that will maximize engagement a
     if (!this.apiKey) return false;
 
     try {
-      const response = await fetch(`${"/api/generateHook", {
+      const response = await fetch(`${"https://api.groq.com/openai/v1/chat/completions", {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.apiKey}`,
