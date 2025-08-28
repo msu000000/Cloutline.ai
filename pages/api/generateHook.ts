@@ -16,8 +16,8 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
-    // Call Groq API
-    const response = await fetch("/api/generateHook", {
+    // Call Groq API directly
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
@@ -42,6 +42,7 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
+    // Extract hook text
     const hook = data.choices?.[0]?.message?.content?.trim();
 
     return new Response(JSON.stringify({ hook }), {
